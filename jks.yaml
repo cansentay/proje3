@@ -33,10 +33,10 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
+        - name: web-storage
+          mountPath: "/usr/share/nginx/html"
       volumes:
-        - name: localtime
+        - name: web-storage
           emptyDir: {}
       imagePullSecrets:
         - name: mysecret
