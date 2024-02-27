@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: nowaitech-web
-        image: cansentay/nowaitech:v1
+        image: cansentay/nowaitech
         resources:
           requests:
             cpu: 500m
