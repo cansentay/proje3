@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+  namespace: default
+  labels:
+    app: web-front-dep
+spec:
+  selector:
+    matchLabels:
+      app: web-front
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web-front
+    spec:
+      containers:
+      - name: nowaitech-web
+        image: cansentay/nowaitech
+
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+      volumes:
+        - name: localtime
+          emptyDir: {}
+      imagePullSecrets:
+        - name: mysecret
