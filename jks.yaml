@@ -37,6 +37,7 @@ spec:
       containers:
       - name: nowaitech-web
         image: cansentay/nowaitech
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 500m
@@ -48,7 +49,7 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: web-storage
-          mountPath: "/usr/share/nginx/html"
+          mountPath: "/logs"
       volumes:
         - name: web-storage
           emptyDir: {}
